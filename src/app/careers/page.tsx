@@ -1,68 +1,50 @@
-import Link from "next/link";
-import { PageShell } from "@/components/shared/page-shell";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { SITE_CONFIG } from "@/lib/site-config";
-
-const roles = [
-  { title: "Product Designer", location: "Remote", type: "Full-time", level: "Mid" },
-  { title: "Frontend Engineer", location: "New York, NY", type: "Full-time", level: "Senior" },
-  { title: "Community Lead", location: "Remote", type: "Part-time", level: "Mid" },
-];
-
-const benefits = [
-  "Flexible schedules and remote-first culture",
-  "Health, dental, and vision coverage",
-  "Annual learning stipend",
-  "Quarterly offsites and team retreats",
-];
+import Link from 'next/link'
+import { BriefcaseBusiness, ArrowRight } from 'lucide-react'
+import { NavbarShell } from '@/components/shared/navbar-shell'
+import { Footer } from '@/components/shared/footer'
+import { SITE_CONFIG } from '@/lib/site-config'
 
 export default function CareersPage() {
   return (
-    <PageShell
-      title="Careers"
-      description={`Help us build the future of community-driven publishing at ${SITE_CONFIG.name}.`}
-      actions={
-        <Button asChild>
-          <Link href="/contact">Apply Now</Link>
-        </Button>
-      }
-    >
-      <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="space-y-4">
-          {roles.map((role) => (
-            <Card key={role.title} className="border-border bg-card">
-              <CardContent className="p-6">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="secondary">{role.level}</Badge>
-                  <Badge variant="outline">{role.type}</Badge>
-                </div>
-                <h2 className="mt-3 text-lg font-semibold text-foreground">{role.title}</h2>
-                <p className="mt-1 text-sm text-muted-foreground">{role.location}</p>
-                <Button variant="outline" className="mt-4" asChild>
-                  <Link href="/contact">View Role</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <Card className="border-border bg-card">
-          <CardContent className="p-6">
-            <h3 className="text-lg font-semibold text-foreground">Why {SITE_CONFIG.name}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              We are building a product that helps people discover and share the best knowledge on the web.
+    <div className="min-h-screen bg-[#efefef] text-[#17324f]">
+      <NavbarShell />
+      <main>
+        <section className="bg-[linear-gradient(120deg,#133a64,#1d4e7c)] text-white">
+          <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
+            <h1 className="text-5xl font-bold uppercase tracking-tight sm:text-6xl">Careers</h1>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-white/90">
+              Build the future of press release distribution with {SITE_CONFIG.name}.
             </p>
-            <div className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {benefits.map((benefit) => (
-                <div key={benefit} className="rounded-md border border-border bg-secondary/40 px-3 py-2">
-                  {benefit}
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </PageShell>
-  );
+          </div>
+        </section>
+
+        <section className="py-14">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <article className="rounded-md border border-[#d2d8e0] bg-white p-8 shadow-[0_14px_30px_rgba(16,44,82,0.08)]">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#edf4ff] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#1e4f7f]">
+                <BriefcaseBusiness className="h-4 w-4" />
+                Hiring Status
+              </div>
+              <h2 className="mt-4 text-4xl font-bold uppercase text-[#1d4268]">We&rsquo;re not hiring right now</h2>
+              <p className="mt-4 text-base leading-8 text-[#41566f]">
+                There are no open roles currently. We update this page whenever new opportunities are available across product, engineering, and operations.
+              </p>
+              <p className="mt-3 text-base leading-8 text-[#41566f]">
+                If you want to work with us in the future, please contact us and share your details.
+              </p>
+
+              <Link
+                href="/contact"
+                className="mt-7 inline-flex items-center gap-2 rounded-md bg-[#ff315b] px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-[#e52c53]"
+              >
+                Contact Us
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </article>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  )
 }
