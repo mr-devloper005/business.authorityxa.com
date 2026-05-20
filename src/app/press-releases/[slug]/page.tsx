@@ -1,15 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowLeft, Calendar, User, Share2, Facebook, Twitter, Linkedin, Mail, ArrowRight } from 'lucide-react'
+import { ArrowLeft, User, Facebook, Twitter, Linkedin, Mail } from 'lucide-react'
 import { ContentImage } from '@/components/shared/content-image'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { SchemaJsonLd } from '@/components/seo/schema-jsonld'
-import { TaskPostCard } from '@/components/shared/task-post-card'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { buildPageMetadata } from '@/lib/seo'
 import { fetchTaskPostBySlug } from '@/lib/task-data'
-import type { SitePost } from '@/lib/site-connector'
 import { notFound } from 'next/navigation'
 
 export const revalidate = 300
@@ -43,39 +41,6 @@ const stripHtml = (value?: string | null) =>
     .replace(/<\/?[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
-
-const relatedPosts: SitePost[] = [
-  {
-    id: '1',
-    title: 'Q4 Financial Results Show Strong Growth',
-    summary: 'Company reports record revenue and expansion into new markets with positive outlook for 2024.',
-    slug: 'q4-financial-results',
-    publishedAt: new Date('2024-01-15').toISOString(),
-    media: [{ url: '/placeholder.jpg?height=400&width=600' }],
-    tags: ['Finance', 'Earnings'],
-    content: {},
-  },
-  {
-    id: '2',
-    title: 'New Partnership Announced with Tech Leader',
-    summary: 'Strategic collaboration aims to accelerate innovation and deliver enhanced solutions to global customers.',
-    slug: 'tech-partnership',
-    publishedAt: new Date('2024-01-10').toISOString(),
-    media: [{ url: '/placeholder.jpg?height=400&width=600' }],
-    tags: ['Partnership', 'Technology'],
-    content: {},
-  },
-  {
-    id: '3',
-    title: 'Sustainability Initiative Receives Industry Recognition',
-    summary: 'Environmental program honored for outstanding contribution to corporate responsibility and green practices.',
-    slug: 'sustainability-award',
-    publishedAt: new Date('2024-01-05').toISOString(),
-    media: [{ url: '/placeholder.jpg?height=400&width=600' }],
-    tags: ['Sustainability', 'Awards'],
-    content: {},
-  },
-]
 
 export default async function PressReleasePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -147,7 +112,7 @@ export default async function PressReleasePage({ params }: { params: Promise<{ s
               </Link>
             </div>
 
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,2.15fr)_minmax(280px,0.85fr)] xl:gap-10">
+            <div className="grid gap-8 xl:gap-10">
               {/* Main Content */}
               <div className="space-y-8">
                 {/* Title and Meta */}
@@ -249,105 +214,13 @@ export default async function PressReleasePage({ params }: { params: Promise<{ s
                       </div>
                     </div>
                     
-                    <div className="text-right">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-[#f2f2f2] px-4 py-2 text-sm font-medium text-[#5f5f5f]">
-                        <Share2 className="h-4 w-4" />
-                        Share
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Sidebar */}
-              <aside className="space-y-8">
-                {/* Quick Actions */}
-                <div className="rounded-xl border border-[#ececec] bg-white p-6 shadow-sm">
-                  <h3 className="mb-4 text-lg font-semibold text-[#1c1c1c]">Quick Actions</h3>
-                  <div className="space-y-3">
-                    <Link
-                      href="/contact"
-                      className="flex items-center justify-between rounded-lg bg-[#ea004f] p-3 text-white transition-colors hover:bg-[#d00046]"
-                    >
-                      <span className="font-medium">Contact Media Relations</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                    <Link
-                      href="/login"
-                      className="flex items-center justify-between rounded-lg border border-[#d4d4d4] bg-white p-3 text-[#1c1c1c] transition-colors hover:border-[#ea004f] hover:text-[#ea004f]"
-                    >
-                      <span className="font-medium">Submit a Press Media</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Categories */}
-                {post.tags && post.tags.length > 0 && (
-                  <div className="rounded-xl border border-[#ececec] bg-white p-6 shadow-sm">
-                    <h3 className="mb-4 text-lg font-semibold text-[#1c1c1c]">Categories</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags?.map((tag: string, index: number) => (
-                        <span
-                          key={index}
-                          className="rounded-full bg-[#f2f2f2] px-3 py-1 text-sm font-medium text-[#5f5f5f]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Download */}
-                <div className="rounded-xl border border-[#ececec] bg-white p-6 shadow-sm">
-                  <h3 className="mb-4 text-lg font-semibold text-[#1c1c1c]">Download</h3>
-                  <div className="space-y-3">
-                    <button className="w-full rounded-lg border border-[#d4d4d4] bg-white p-3 text-[#1c1c1c] transition-colors hover:border-[#ea004f] hover:text-[#ea004f]">
-                      Download PDF Version
-                    </button>
-                    <button className="w-full rounded-lg border border-[#d4d4d4] bg-white p-3 text-[#1c1c1c] transition-colors hover:border-[#ea004f] hover:text-[#ea004f]">
-                      Download Images
-                    </button>
-                  </div>
-                </div>
-              </aside>
             </div>
           </div>
         </article>
-
-        {/* Related Press Releases */}
-        <section className="bg-[#f6f6f6] py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold text-[#1c1c1c]">More Press Media</h2>
-              <p className="mt-2 text-lg text-[#5f5f5f]">
-                Stay updated with more company announcements and industry news
-              </p>
-            </div>
-            
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {relatedPosts.map((relatedPost) => (
-                <TaskPostCard
-                  key={relatedPost.id}
-                  post={relatedPost}
-                  href={`/press-releases/${relatedPost.slug}`}
-                  taskKey="mediaDistribution"
-                />
-              ))}
-            </div>
-            
-            <div className="mt-12 text-center">
-              <Link
-                href="/press-releases"
-                className="inline-flex items-center gap-2 rounded-full bg-[#ea004f] px-8 py-3 font-semibold text-white transition-colors hover:bg-[#d00046]"
-              >
-                View All Press Media
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />
