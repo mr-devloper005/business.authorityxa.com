@@ -60,7 +60,7 @@ export async function TaskDetailPageOverride({ slug }: { task: TaskKey; slug: st
   const html = formatRichHtml(rawBody, '')
   const images = getImageUrls(post, content)
   const hero = images[0]
-  const archivePath = SITE_CONFIG.taskViews.mediaDistribution || '/updates'
+  const archivePath = SITE_CONFIG.taskViews.mediaDistribution || '/press'
   const categoryLabel = getCategoryLabel(post, content)
   const categorySlug = normalizeCategory(categoryLabel)
   const pageUrl = `${SITE_CONFIG.baseUrl.replace(/\/$/, '')}${buildPostUrl('mediaDistribution', post.slug)}`

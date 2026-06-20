@@ -293,67 +293,6 @@ export default function NewAdPage() {
               </div>
             </motion.div>
 
-            {/* Pricing */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="bg-card rounded-xl border border-border p-6"
-            >
-              <h2 className="text-lg font-semibold text-foreground mb-6">
-                <DollarSign className="h-5 w-5 inline mr-2" />
-                Pricing
-              </h2>
-              <div className="space-y-6">
-                <RadioGroup
-                  value={priceType}
-                  onValueChange={setPriceType}
-                  className="flex flex-wrap gap-4"
-                >
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="fixed" id="fixed" />
-                    <Label htmlFor="fixed" className="font-normal cursor-pointer">
-                      Fixed Price
-                    </Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="negotiable" id="negotiable" />
-                    <Label htmlFor="negotiable" className="font-normal cursor-pointer">
-                      Negotiable
-                    </Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="free" id="free" />
-                    <Label htmlFor="free" className="font-normal cursor-pointer">
-                      Free
-                    </Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="contact" id="contact" />
-                    <Label htmlFor="contact" className="font-normal cursor-pointer">
-                      Contact for Price
-                    </Label>
-                  </div>
-                </RadioGroup>
-
-                {(priceType === "fixed" || priceType === "negotiable") && (
-                  <div className="space-y-2">
-                    <Label htmlFor="price">Price *</Label>
-                    <div className="relative">
-                      <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        id="price"
-                        type="number"
-                        placeholder="0.00"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        className="pl-9"
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.div>
 
             {/* Location */}
             <motion.div
