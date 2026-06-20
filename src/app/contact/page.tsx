@@ -1,141 +1,64 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { Send, ArrowRight } from 'lucide-react'
+import { Send } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { buildPageMetadata } from '@/lib/seo'
+import { SITE_CONFIG } from '@/lib/site-config'
 
 export const revalidate = 300
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     path: '/contact',
-    title: 'Contact Us - Worldreporter 24 X 7',
-    description: 'Get in touch with Worldreporter 24 X 7 media relations team. Contact us for press inquiries, partnerships, and media opportunities.',
-    keywords: ['contact', 'media relations', 'press inquiries', 'partnerships', 'customer support'],
+    title: `Contact ${SITE_CONFIG.name}`,
+    description: `Get in touch with ${SITE_CONFIG.name} for distribution support and partnership inquiries.`,
+    keywords: ['contact', 'support', 'press release services', SITE_CONFIG.name],
   })
 }
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-[#efefef] text-[#17324f]">
       <NavbarShell />
-
       <main>
-        {/* Hero Section */}
-        <section className="bg-[#ea004f] text-white">
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-            <div className="mx-auto max-w-4xl text-center">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Get in Touch
-              </h1>
-              <p className="mt-6 text-xl text-white/90">
-                Connect with our team for media inquiries, partnerships, and press opportunities
-              </p>
-            </div>
+        <section className="bg-[linear-gradient(120deg,#123963,#1d4d7b)] text-white">
+          <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
+            <h1 className="text-5xl font-bold uppercase tracking-tight sm:text-6xl">Contact Us</h1>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-white/90">Talk to our team about press release distribution, campaign support, and media partnerships.</p>
           </div>
         </section>
 
-        {/* Contact Form */}
-        <section className="bg-white py-20">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <div className="rounded-xl border border-[#ececec] bg-white p-8 shadow-sm">
-              <h2 className="mb-6 text-2xl font-bold text-[#1c1c1c]">Send us a Message</h2>
-
-              <form className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-[#4d4d4d]">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full rounded-lg border border-[#d9d9d9] px-4 py-3 text-[#1c1c1c] placeholder-[#8a8a8a] focus:border-[#ea004f] focus:outline-none focus:ring-2 focus:ring-[#ea004f]/20"
-                    placeholder="John Doe"
-                  />
+        <section className="py-14">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+              <article className="rounded-md bg-[linear-gradient(135deg,#153b65,#1e507f)] p-8 text-white">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">Reach Our Team</p>
+                <h2 className="mt-4 text-4xl font-bold uppercase">We’re here to help</h2>
+                <p className="mt-4 text-base leading-8 text-white/85">Share your requirements and our specialists will get back with the right distribution plan.</p>
+                <div className="mt-7 space-y-3 text-sm text-white/90">
+                  <p>Support window: 24/7</p>
+                  <p>Primary response time: within 1 business day</p>
                 </div>
+              </article>
 
-                <div>
-                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#4d4d4d]">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full rounded-lg border border-[#d9d9d9] px-4 py-3 text-[#1c1c1c] placeholder-[#8a8a8a] focus:border-[#ea004f] focus:outline-none focus:ring-2 focus:ring-[#ea004f]/20"
-                    placeholder="john@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="mb-2 block text-sm font-medium text-[#4d4d4d]">
-                    Subject *
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    required
-                    className="w-full rounded-lg border border-[#d9d9d9] px-4 py-3 text-[#1c1c1c] placeholder-[#8a8a8a] focus:border-[#ea004f] focus:outline-none focus:ring-2 focus:ring-[#ea004f]/20"
-                    placeholder="How can we help you?"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="mb-2 block text-sm font-medium text-[#4d4d4d]">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={6}
-                    className="w-full rounded-lg border border-[#d9d9d9] px-4 py-3 text-[#1c1c1c] placeholder-[#8a8a8a] focus:border-[#ea004f] focus:outline-none focus:ring-2 focus:ring-[#ea004f]/20"
-                    placeholder="Tell us more about your inquiry..."
-                  />
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#ea004f] px-8 py-3 font-semibold text-white transition-colors hover:bg-[#d00046]"
-                  >
+              <article className="rounded-md border border-[#d2d8e0] bg-white p-8 shadow-[0_14px_30px_rgba(16,44,82,0.08)]">
+                <h2 className="text-3xl font-bold uppercase text-[#17324f]">Send a message</h2>
+                <form className="mt-6 space-y-4">
+                  <input type="text" required className="h-12 w-full rounded-md border border-[#d7dfe8] bg-[#f7f9fc] px-4 text-sm outline-none focus:border-[#1e4f7f]" placeholder="Full name" />
+                  <input type="email" required className="h-12 w-full rounded-md border border-[#d7dfe8] bg-[#f7f9fc] px-4 text-sm outline-none focus:border-[#1e4f7f]" placeholder="Work email" />
+                  <input type="text" required className="h-12 w-full rounded-md border border-[#d7dfe8] bg-[#f7f9fc] px-4 text-sm outline-none focus:border-[#1e4f7f]" placeholder="Company" />
+                  <input type="text" required className="h-12 w-full rounded-md border border-[#d7dfe8] bg-[#f7f9fc] px-4 text-sm outline-none focus:border-[#1e4f7f]" placeholder="Subject" />
+                  <textarea required rows={6} className="w-full rounded-md border border-[#d7dfe8] bg-[#f7f9fc] px-4 py-3 text-sm outline-none focus:border-[#1e4f7f]" placeholder="Tell us what you need..." />
+                  <button type="submit" className="inline-flex h-12 items-center gap-2 rounded-md bg-[#ff315b] px-7 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-[#e52c53]">
                     <Send className="h-4 w-4" />
                     Send Message
                   </button>
-                  <span className="text-sm text-[#5f5f5f]">We'll respond within 24 hours</span>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="bg-[#f6f6f6] py-16">
-          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-            <h2 className="mb-4 text-3xl font-bold text-[#1c1c1c]">
-              Ready to Share Your Story?
-            </h2>
-            <p className="mb-8 text-xl text-[#5f5f5f]">
-              Join thousands of organizations who trust us with their press media distribution
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Link
-                href="/press-releases"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#d4d4d4] bg-white px-8 py-3 font-semibold text-[#1c1c1c] transition-colors hover:border-[#ea004f] hover:text-[#ea004f]"
-              >
-                Browse Press Media
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+                </form>
+              </article>
             </div>
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   )
